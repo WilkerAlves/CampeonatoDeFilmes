@@ -13,6 +13,7 @@ export class InstructionsComponent implements OnInit {
   public movies: Movie[];
   public list_movies_selected: any = [];
   public qty_selected: number = 0; 
+  public qty_maxima: number = 8;
 
   ngOnInit(): void {
     this.movieService.getMovies()
@@ -27,8 +28,7 @@ export class InstructionsComponent implements OnInit {
 
 
   AdicionarFilmes(event: any){
-    let filme
-    filme = this.movies.find(e => e.id == event.target.value)
+    let filme = this.movies.find(e => e.id == event.target.value)
 
     if(event.target.checked){
       console.log("to checado", event.target.value)
@@ -40,13 +40,15 @@ export class InstructionsComponent implements OnInit {
       this.list_movies_selected.splice(index, 1);
     }
     this.qty_selected = this.list_movies_selected.length
+    console.log("list_movies_selected", this.list_movies_selected.sort((a, b) => a.titulo.localeCompare(b.titulo)))
   }
 
   createCampeonato(movies: Movie) {
-    this.movieService.gerarCampeonato(movies).subscribe(
-        article => {
-          console.log(article);
-        }
+    this.movieService.gerarCampeonato(movies)
+    .subscribe(
+      movies => {
+        console.log(movies);
+      }
     );
   }
 

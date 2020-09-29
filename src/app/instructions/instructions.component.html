@@ -12,10 +12,10 @@
     <div class="row d-flex justify-content-between align-items-center my-3">
         <div class="col-12 col-md-2 selecionados d-flex flex-md-column justify-content-center justify-content-sm-start" >
             <span>Selecionados&nbsp;</span>
-            <span>{{ qty_selected }} de 8 Filmes</span>
+            <span>{{ qty_selected }} de {{ qty_maxima }} Filmes</span>
         </div>
         <div class="col-12 col-md-3 d-flex justify-content-center justify-content-sm-end">
-            <button type="button" class="btn btn-secondary btn-lg" (click)='createCampeonato(list_movies_selected)'>Gerar meu campeonato</button>
+            <button type="button" class="btn btn-secondary btn-lg" (click)='createCampeonato(list_movies_selected)' [disabled]='qty_selected !== qty_maxima'>Gerar meu campeonato</button>
             <!-- <a href="#" class="btn btn-secondary btn-lg">Gerar meu campeonato</a> -->
         </div>
     </div>
