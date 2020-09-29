@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "inlineTemplate": true,
+          "inlineTemplate": false,
           "inlineStyle": true,
           "skipTests": true
         },
@@ -104,6 +104,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CopaMundoFilmesFront"
+    }
+  },
+  "defaultProject": "CopaMundoFilmesFront",
+  "cli": {
+    "analytics": "8807763f-d8f1-4c52-a001-10cb0c58cada"
+  }
 }
