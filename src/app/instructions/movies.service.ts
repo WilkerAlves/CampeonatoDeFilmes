@@ -20,8 +20,8 @@ export class MovieService {
         return this.http.get<Movie[]>(this.UrlGetMovies + "/movies")
     }
 
-    gerarCampeonato(movies: any) : Observable<Movie> {
-        return this.http.post<Movie>(this.UrlGetMovies + "/movies", movies);
+    gerarCampeonato(movies: any) : Observable<Movie[]> {
+        return this.http.post<Movie[]>(this.UrlGetMovies + "/movies", movies);
    } 
 
    

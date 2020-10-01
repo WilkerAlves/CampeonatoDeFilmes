@@ -1,34 +1,64 @@
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron text-center m-0">
-                <p class=" text-uppercase font-weight-light campeonato">campeonato de filmes</p>
-                <h2>Fase de Seleção</h2>
-                <hr class="my-4">
-                <p>Selecione 8 filmes que você deseja que entrem na competição e depois pressione o <br/> botão Gerar Meu Campeonato para prosseguir</p>
-          </div>
+    <div *ngIf="!result_cup">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron text-center m-0">
+                    <p class=" text-uppercase font-weight-light campeonato">campeonato de filmes</p>
+                    <h2>Fase de Seleção</h2>
+                    <hr class="my-4">
+                    <p>Selecione 8 filmes que você deseja que entrem na competição e depois pressione o <br/> botão Gerar Meu Campeonato para prosseguir</p>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-between align-items-center my-3">
+            <div class="col-12 col-md-2 selecionados d-flex flex-md-column justify-content-center justify-content-sm-start" >
+                <span>Selecionados&nbsp;</span>
+                <span>{{ qty_selected }} de {{ qty_maxima }} Filmes</span>
+            </div>
+            <div class="col-12 col-md-3 d-flex justify-content-center justify-content-sm-end">
+                <button type="button" class="btn btn-secondary btn-lg" (click)='createCampeonato(list_movies_selected)' [disabled]='qty_selected !== qty_maxima'>Gerar meu campeonato</button>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngFor="let movie of movies" class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-12">
+                            <label class="form-check-label titulo-filme" for="{{ movie.id }}">
+                                <input type="checkbox" value="{{ movie.id }}" class="form-check-input form-control-lg big-checkbox" id="{{ movie.id }}" (change)='AdicionarFilmes($event)'>
+                                {{ movie.titulo }}
+                            </label>
+                            <p class="card-text font-weight-light ano">{{ movie.ano }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row d-flex justify-content-between align-items-center my-3">
-        <div class="col-12 col-md-2 selecionados d-flex flex-md-column justify-content-center justify-content-sm-start" >
-            <span>Selecionados&nbsp;</span>
-            <span>{{ qty_selected }} de {{ qty_maxima }} Filmes</span>
+    <div *ngIf="result_cup">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="jumbotron text-center m-0">
+                    <p class=" text-uppercase font-weight-light campeonato">campeonato de filmes</p>
+                    <h2>Resultado final</h2>
+                    <hr class="my-4">
+                    <p>Veja o resultado final do campeonato de filmes de forma simples</p>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-md-3 d-flex justify-content-center justify-content-sm-end">
-            <button type="button" class="btn btn-secondary btn-lg" (click)='createCampeonato(list_movies_selected)' [disabled]='qty_selected !== qty_maxima'>Gerar meu campeonato</button>
-            <!-- <a href="#" class="btn btn-secondary btn-lg">Gerar meu campeonato</a> -->
-        </div>
-    </div>
-    <div class="row">
-        <div *ngFor="let movie of movies" class="col-md-3 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="col-12">
-                        <label class="form-check-label titulo-filme" for="{{ movie.id }}">
-                            <input type="checkbox" value="{{ movie.id }}" class="form-check-input form-control-lg big-checkbox" id="{{ movie.id }}" (change)='AdicionarFilmes($event)'>
-                            {{ movie.titulo }}
-                        </label>
-                        <p class="card-text font-weight-light ano">{{ movie.ano }}</p>
+
+        <div *ngFor="let movie of movies; let i = index" class="row no-gutters mb-3">
+            <div class="col-2">
+                <div class="card posicao">
+                    <div class="card-body">
+                        <h3 class="card-title text-nowrap">{{ i + 1 }}º</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ movie.titulo }}</h3>
                     </div>
                 </div>
             </div>

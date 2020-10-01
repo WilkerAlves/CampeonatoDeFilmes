@@ -12,8 +12,9 @@ export class InstructionsComponent implements OnInit {
 
   public movies: Movie[];
   public list_movies_selected: any = [];
-  public qty_selected: number = 0; 
+  public qty_selected: number = 0;
   public qty_maxima: number = 8;
+  public result_cup: boolean = false
 
   ngOnInit(): void {
     this.movieService.getMovies()
@@ -47,7 +48,9 @@ export class InstructionsComponent implements OnInit {
     this.movieService.gerarCampeonato(movies)
     .subscribe(
       movies => {
-        console.log(movies);
+        this.result_cup = true
+        this.movies = movies
+        console.log('retorno', movies);
       }
     );
   }
