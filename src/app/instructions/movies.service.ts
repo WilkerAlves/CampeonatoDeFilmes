@@ -14,16 +14,14 @@ export class MovieService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }
 
-    // protected UrlGetMovies: string ="http://copafilmes.azurewebsites.net/api/filmes";
     protected UrlGetMovies: string ="https://localhost:44383";
 
     getMovies() : Observable<Movie[]> {
-        return this.http.get<Movie[]>(this.UrlGetMovies + "/filmes")
+        return this.http.get<Movie[]>(this.UrlGetMovies + "/movies")
     }
 
     gerarCampeonato(movies: any) : Observable<Movie> {
-        console.log('movies', movies)
-        return this.http.post<Movie>(this.UrlGetMovies + "/filmes", movies);
+        return this.http.post<Movie>(this.UrlGetMovies + "/movies", movies);
    } 
 
    
