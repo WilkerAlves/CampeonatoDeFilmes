@@ -14,7 +14,7 @@ export class MovieService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }
 
-    protected UrlGetMovies: string ="https://localhost:44383";
+    protected UrlGetMovies: string ="https://localhost:5001";
 
     getMovies() : Observable<Movie[]> {
         return this.http.get<Movie[]>(this.UrlGetMovies + "/movies")

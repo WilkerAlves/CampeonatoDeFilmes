@@ -2,9 +2,11 @@
 
 Instale o node na versão 12.18.4 ou superior, segue o link: https://nodejs.org/en/
 
-Clone o projeto para maquina, após entre dentro da pasta do projeto e rode o comando npm i
+Clone o projeto para maquina, após entre dentro da pasta do projeto e rode o comando npm i.
 
-depois rode o comando ng s para subir o servidor.
+Depois rode o comando ng s --port 4200 para subir o servidor.
 
-clique no link gerado http://localhost:4200/
+Caso a porta esteja indisponivel na maquina altere o numero.
+
+clique no link gerado com a porta padrão http://localhost:4200/
 
