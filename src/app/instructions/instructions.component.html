@@ -13,10 +13,10 @@
         <div class="row d-flex justify-content-between align-items-center my-3">
             <div class="col-12 col-md-2 selecionados d-flex flex-md-column justify-content-center justify-content-sm-start" >
                 <span>Selecionados&nbsp;</span>
-                <span>{{ qty_selected }} de {{ qty_maxima }} Filmes</span>
+                <span>{{ qty_selected }} de {{ qty_maximum }} Filmes</span>
             </div>
             <div class="col-12 col-md-3 d-flex justify-content-center justify-content-sm-end">
-                <button type="button" class="btn btn-secondary btn-lg" (click)='createCampeonato(list_movies_selected)' [disabled]='qty_selected !== qty_maxima'>Gerar meu campeonato</button>
+                <button type="button" class="btn btn-secondary btn-lg" (click)='createCup(movies_selected)' [disabled]='qty_selected !== qty_maximum'>Gerar meu campeonato</button>
             </div>
         </div>
         <div class="row">
@@ -25,7 +25,7 @@
                     <div class="card-body">
                         <div class="col-12">
                             <label class="form-check-label titulo-filme" for="{{ movie.id }}">
-                                <input type="checkbox" value="{{ movie.id }}" class="form-check-input form-control-lg big-checkbox" id="{{ movie.id }}" (change)='AdicionarFilmes($event)'>
+                                <input type="checkbox" value="{{ movie.id }}" class="form-check-input form-control-lg big-checkbox" id="{{ movie.id }}" (change)='addMovies($event)'>
                                 {{ movie.titulo }}
                             </label>
                             <p class="card-text font-weight-light ano">{{ movie.ano }}</p>
@@ -46,8 +46,10 @@
                 </div>
             </div>
         </div>
-
-        <div *ngFor="let movie of movies; let i = index" class="row no-gutters mb-3">
+        <div class="col-12 mb-3">
+            <button type="button" class="btn btn-secondary btn-lg btn-block" (click)='reloadCup()'>Criar novo campeonato</button>
+        </div>
+        <div *ngFor="let champion of champions; let i = index" class="row no-gutters mb-3">
             <div class="col-2">
                 <div class="card posicao">
                     <div class="card-body">
@@ -58,7 +60,7 @@
             <div class="col-10">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">{{ movie.titulo }}</h3>
+                        <h3 class="card-title">{{ champion.titulo }}</h3>
                     </div>
                 </div>
             </div>

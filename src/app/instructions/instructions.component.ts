@@ -10,49 +10,52 @@ export class InstructionsComponent implements OnInit {
 
   constructor(private movieService: MovieService) { }
 
-  public movies: Movie[];
-  public list_movies_selected: any = [];
-  public qty_selected: number = 0;
-  public qty_maxima: number = 8;
+  public movies: Movie[]
+  public champions: Movie[]
+  public movies_selected: Movie[] = [];
+  public qty_selected: number = 0
+  public qty_maximum: number = 8
   public result_cup: boolean = false
 
   ngOnInit(): void {
     this.movieService.getMovies()
       .subscribe(
         movies => {
-          this.movies = movies;
-          console.log(movies);
+          this.movies = movies
+          console.log(movies)
         },
-        error => console.log('error')
       );
   }
 
 
-  AdicionarFilmes(event: any){
-    let filme = this.movies.find(e => e.id == event.target.value)
+  addMovies(event: any){
+    let movie = this.movies.find(e => e.id == event.target.value)
 
     if(event.target.checked){
-      console.log("to checado", event.target.value)
-      this.list_movies_selected.push(filme)
+      this.movies_selected.push(movie)
     }
     else{
-      let index = this.list_movies_selected.findIndex(e => e.id === event.target.value);
+      let index = this.movies_selected.findIndex(e => e.id === event.target.value)
       console.log(index)
-      this.list_movies_selected.splice(index, 1);
+      this.movies_selected.splice(index, 1);
     }
-    this.qty_selected = this.list_movies_selected.length
-    console.log("list_movies_selected", this.list_movies_selected.sort((a, b) => a.titulo.localeCompare(b.titulo)))
+    this.qty_selected = this.movies_selected.length
   }
 
-  createCampeonato(movies: Movie) {
-    this.movieService.gerarCampeonato(movies)
+  createCup(movies: Movie) {
+    this.movieService.generatedCup(movies)
     .subscribe(
       movies => {
         this.result_cup = true
-        this.movies = movies
-        console.log('retorno', movies);
+        this.champions = movies
       }
     );
+  }
+
+  reloadCup(){
+    this.result_cup = false
+    this.movies_selected = []
+    this.champions = []
   }
 
 }
